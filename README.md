@@ -5,20 +5,20 @@ This repository holds the infrastructure manifests and environment variable file
 ## Repository layout
 
 - `infra.tf` - Terraform root (manifests / resources). Currently a placeholder for the project infra.
-- `envs/staging.tfvars` - Staging environment variables. The Docker Hub webhook/agent replaces the `image` value here when new images are pushed.
-- `envs/production.tfvars` - Production environment variables (apply changes via PR + review).
+- `manifests/staging.tfvars` - Staging environment variables. The Docker Hub webhook/agent replaces the `image` value here when new images are pushed.
+- `manifests/production.tfvars` - Production environment variables (apply changes via PR + review).
 - `README.md` - This file.
 
 ## CD workflow (high level)
 
 1. Build and push a Docker image to Docker Hub (for example: `sagnik3788/promptsafely:TAG`).
-2. Docker Hub webhook notifies our bot/agent which updates the `image` variable line in `envs/staging.tfvars` to the new image reference.
+2. Docker Hub webhook notifies our bot/agent which updates the `image` variable line in `manifests/staging.tfvars` to the new image reference.
 3. The updated manifest is deployed to the staging VM (either automatically by CI or manually by an operator) using Terraform with the staging var-file.
-4. If staging looks good, update `envs/production.tfvars` and create a Pull Request. After review and merge, apply the production manifest to production hosts (manual or CI-driven as configured).
+4. If staging looks good, update `manifests/production.tfvars` and create a Pull Request. After review and merge, apply the production manifest to production hosts (manual or CI-driven as configured).
 
 ## How to update the image (manual)
 
-If you need to change the image manually (for example to test a specific tag), edit `envs/staging.tfvars` and update the `image` line. Example:
+If you need to change the image manually (for example to test a specific tag), edit `manifests/staging.tfvars` and update the `image` line. Example:
 
 ```h
 image = "sagnik3788/promptsafely:latest"
@@ -29,11 +29,11 @@ Then deploy to the staging VM. Typical commands (run on the deployment host or C
 ```bash
 cd /path/to/PromptSafely-infra
 terraform init
-terraform plan -var-file=envs/staging.tfvars
-terraform apply -var-file=envs/staging.tfvars -auto-approve
+terraform plan -var-file=manifests/staging.tfvars
+terraform apply -var-file=manifests/staging.tfvars -auto-approve
 ```
 
-Replace `envs/staging.tfvars` with `envs/production.tfvars` for production deployments (production changes should go through a PR and review process before applying).
+Replace `manifests/staging.tfvars` with `manifests/production.tfvars` for production deployments (production changes should go through a PR and review process before applying).
 
 ## Important variables (examples)
 
@@ -42,18 +42,18 @@ Replace `envs/staging.tfvars` with `envs/production.tfvars` for production deplo
 - `service_port` - Port the service listens on (staging example: `8080`).
 - `environment` - Logical environment name (`staging` / `production`).
 
-These variables live in the `envs/*.tfvars` files. Keep sensitive secrets out of this repository — use a secrets manager if needed.
+These variables live in the `manifests/*.tfvars` files. Keep sensitive secrets out of this repository — use a secrets manager if needed.
 
 ## Production flow
 
-- Make desired changes to `envs/production.tfvars` or other manifests.
+- Make desired changes to `manifests/production.tfvars` or other manifests.
 - Open a Pull Request, request review and run your CI checks.
 - After approval and merge, apply the infrastructure change to production hosts (via CI or an operator-run `terraform apply`).
 
 ## Troubleshooting
 
 - If Terraform complains about missing providers or modules, run `terraform init` first.
-- If the webhook did not update `envs/staging.tfvars`, check the webhook/agent logs and repository permissions.
+- If the webhook did not update `manifests/staging.tfvars`, check the webhook/agent logs and repository permissions.
 - If a deployment fails, check the target VM logs and the Terraform plan output to identify resource or IAM issues.
 
 ## Notes
@@ -66,4 +66,4 @@ For questions about the deployment flow, reach out to the team or the repository
 
 ---
 
-Quick reference: the staging image is currently stored in `envs/staging.tfvars` (the `image` variable).
+Quick reference: the staging image is currently stored in `manifests/staging.tfvars` (the `image` variable).
