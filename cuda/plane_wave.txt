@@ -1,0 +1,23 @@
+# cdef void applyTFSFMagnetic(...):
+#     # m, origin, and corners define the 1D-to-3D mapping and box size
+
+#     # Example: Update Constant X Faces
+#     i = x_start
+#     for j in prange(y_start, y_stop+1, ...):
+#         for k in range(z_start, z_stop):
+#             # 1. Calculate matching index in the 1D plane wave array
+#             index = m_x * (i-Ox) + m_y * (j-Oy) + m_z * (k-Oz)
+#             # 2. Inject the incident field into the 3D grid
+#             Hy[i-1, j, k] -= coef_H_yx * E_z[index]
+
+
+
+# cdef void applyTFSFElectric(...):
+#     # Example: Update Constant X Faces
+#     i = x_start
+#     for j in prange(y_start, y_stop+1, ...):
+#         for k in range(z_start, z_stop):
+#             # 1. Look back one step in the 1D mapping
+#             index = m_x * (i-1-Ox) + m_y * (j-Oy) + m_z * (k-Oz)
+#             # 2. Add the incident magnetic components to the 3D grid
+#             Ez[i, j, k] -= coef_E_zx * H_y[index]
