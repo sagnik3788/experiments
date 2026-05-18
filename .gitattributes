@@ -1,0 +1,6 @@
+# Exclude non-CUDA directories from GitHub language stats
+dotfiles/ linguist-vendored
+llama.cpp/ linguist-vendored
+reads/ linguist-vendored
+skills/ linguist-vendored
+inferencemaxxing/ linguist-vendored
