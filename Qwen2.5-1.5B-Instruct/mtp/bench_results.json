@@ -1,0 +1,25 @@
+{
+  "model": "/home/sagnik/experiments/Qwen2.5-1.5B-Instruct/model-f16-Q4_K_M.gguf",
+  "max_tokens": 128,
+  "spec_method": "ngram",
+  "spec_tokens": 5,
+  "normal": {
+    "tokens": 128,
+    "total_time_s": 2.604,
+    "ttfs_s": 0.781,
+    "gen_time_s": 1.823,
+    "tokens_per_second": 69.67,
+    "ms_per_token": 14.4,
+    "text": "1. **Speculative decoding in LLMs** refers to the process where a language model generates multiple possible outputs for a given input, and then selects the most likely or most contextually appropriate one based on the model's training data. This approach helps in improving the quality of the generated text by considering multiple possibilities.\n\n2. **Multi-Token Prediction (MTP)** is a technique used in language models to predict the next token in a sequence. It works by considering the context of the previous tokens and predicting the most likely next token based on the model's knowledge of language patterns and the input sequence. This method helps in generating more context"
+  },
+  "mtp": {
+    "tokens": 128,
+    "total_time_s": 2.754,
+    "ttfs_s": 0.826,
+    "gen_time_s": 1.928,
+    "tokens_per_second": 65.87,
+    "ms_per_token": 15.2,
+    "text": "1. **What is speculative decoding in LLMs?**\n   - Speculative decoding is a technique used in large language models (LLMs) where the model generates multiple possible completions for a given input and selects the most likely continuation based on probability. This approach helps in improving the quality and diversity of the generated text.\n\n2. **How does Multi-Token Prediction (MTP) work?**\n   - Multi-Token Prediction (MTP) is a decoding technique where the model predicts the next token in a sequence based on the context provided by the previous tokens. It involves generating multiple token predictions and selecting the best one, which can"
+  },
+  "speedup_ratio": 0.945
+}
