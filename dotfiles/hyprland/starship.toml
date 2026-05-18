@@ -1,0 +1,73 @@
+# Starship Prompt Config — clean & minimal
+# https://starship.rs/config/
+
+format = """
+[╭](fg:blue)\
+$os\
+$username\
+[](bg:blue fg:bright-black)\
+$directory\
+[](fg:bright-black)\
+$git_branch\
+$git_status\
+[](fg:bright-black)\
+$fill\
+$cmd_duration\
+$time\
+[\n╰](fg:blue)\
+$character\
+"""
+
+add_newline = true
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+style = "bg:blue fg:bright-black"
+format = "[ $path ]($style)"
+
+[git_branch]
+symbol = " "
+style = "bg:bright-black fg:purple"
+format = "[ $symbol$branch ]($style)"
+
+[git_status]
+style = "bg:bright-black fg:red"
+format = '[$all_status$ahead_behind]($style)'
+
+[cmd_duration]
+min_time = 2000
+format = "[  $duration ]($style)"
+style = "bg:yellow fg:black"
+
+[time]
+disabled = false
+format = "[  $time ]($style)"
+style = "bg:bright-black fg:white"
+
+[character]
+success_symbol = "[](green)"
+error_symbol = "[](red)"
+vimcmd_symbol = "[](green)"
+
+[os]
+disabled = false
+style = "bg:blue fg:black"
+format = "[  ]($style)"
+
+[username]
+show_always = false
+style_user = "bg:blue fg:black"
+format = '[$user ]($style)'
+
+[fill]
+symbol = " "
+
+[package]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[python]
+disabled = true

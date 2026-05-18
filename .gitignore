@@ -1,0 +1,114 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.eggs/
+*.egg
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints
+
+# Model weights (GGUF, GGML, Safetensors, PyTorch, ONNX)
+*.gguf
+*.ggml
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.onnx.data
+*.model
+*.pb
+
+# Model vocab/config (often large, can be re-downloaded)
+vocab.json
+tokenizer.json
+merges.txt
+special_tokens_map.json
+tokenizer.model
+tokenizer_config.json
+
+# Compiled binaries
+*.out
+*.exe
+*.o
+*.so
+*.dylib
+*.a
+scaler
+vec_add
+
+# Large media files
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.webm
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+
+# Data files
+*.csv
+*.parquet
+*.h5
+*.hdf5
+*.npy
+*.npz
+*.pickle
+*.pkl
+
+# Logs
+*.log
+logs/
+
+# Checkpoints
+checkpoints/
+*.ckpt
+
+# HF cache
+.huggingface/
+cache/
+.hf/
+
+# llama.cpp specific
+build/
+models/
+*.gguf
